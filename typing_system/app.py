@@ -63,7 +63,7 @@ document.addEventListener('cut', event => event.preventDefault());
 # ---------------- LOGIN PAGE ----------------
 if st.session_state.page == "login":
 
-    st.markdown('<div class="header">Government Typing Examination Portal</div>', unsafe_allow_html=True)
+    st.markdown('<div class="header">Delhi Police HCM Typing Examination Portal</div>', unsafe_allow_html=True)
 
     role = st.radio("Login As:", ["Student", "Admin"])
 
@@ -210,4 +210,5 @@ elif st.session_state.page == "admin_panel":
 
 
         st.download_button("Download Results CSV", df.to_csv(index=False), "results.csv")
+
 
