@@ -5,7 +5,7 @@ from difflib import SequenceMatcher
 import os
 
 # ---------------- CONFIG ----------------
-st.set_page_config(page_title="Government Typing Examination", layout="wide")
+st.set_page_config(page_title="Delhi Police HCM Typing Examination", layout="wide")
 
 TEST_DURATION = 600
 CSV_FILE = "student_results.csv"
@@ -91,7 +91,7 @@ elif st.session_state.page == "student_home":
     st.title("Typing Test")
 
     name = st.text_input("Enter Name")
-    category = st.selectbox("Select Category", ["10 WPM", "25 WPM", "40 WPM"])
+    category = st.selectbox("Select Category", ["Gen", "OBC", "EWS", "SC", "ST"])
 
     if st.button("Start Test"):
 
@@ -210,3 +210,4 @@ elif st.session_state.page == "admin_panel":
 
 
         st.download_button("Download Results CSV", df.to_csv(index=False), "results.csv")
+
