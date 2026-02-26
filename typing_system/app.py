@@ -152,25 +152,28 @@ elif st.session_state.page == "exam":
         gross_speed = (len(typed)/5)/time_taken if time_taken>0 else 0
         final_speed = max(gross_speed - mistakes, 0)
 
-        if final_speed < 30:
+        final_speed_int = int(final_speed)  # Round down for marking
+
+        if final_speed_int < 30:
             marks = "Disqualify"
-        elif final_speed == 30:
+        elif final_speed_int == 30:
             marks = 10
-        elif 31 <= final_speed <= 35:
+        elif 31 <= final_speed_int <= 35:
             marks = 12
-        elif 36 <= final_speed <= 40:
+        elif 36 <= final_speed_int <= 40:
             marks = 15
-        elif 41 <= final_speed <= 45:
+        elif 41 <= final_speed_int <= 45:
             marks = 18
-        elif 46 <= final_speed <= 50:
+        elif 46 <= final_speed_int <= 50:
             marks = 21
         else:
             marks = 25
 
+        st.success(f"Raw Speed (Gross Speed): {round(gross_speed,2)} WPM")
+        st.error(f"Mistakes: {mistakes}")
         st.success(f"Final Speed: {round(final_speed,2)} WPM")
-        st.info(f"Mistakes: {mistakes}")
         st.info(f"Marks: {marks}")
-
+        
         data = {
             "Name": st.session_state.name,
             "Category": st.session_state.category,
@@ -204,5 +207,6 @@ elif st.session_state.page == "admin_panel":
         df = pd.read_csv(CSV_FILE)
         st.subheader("Student Results")
         st.dataframe(df)
+
 
         st.download_button("Download Results CSV", df.to_csv(index=False), "results.csv")
